@@ -1,0 +1,38 @@
+.list{
+  margin-top: 40px;
+  width: 50%;
+  margin-left: 80px;
+  .item{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    button{
+      width: 150px;
+    }
+    label{
+      width: 200px;
+    }
+  }
+}
+
+.visits, .payments {
+  margin: 50px;
+  .section {
+    width: 50%;
+    button {
+      width: 60%;
+      margin-bottom: 10px;
+    }
+  }
+}
+
+.setPay {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 90%;
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
+}

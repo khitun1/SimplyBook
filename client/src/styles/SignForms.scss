@@ -1,0 +1,26 @@
+.startPage {
+  display: flex;
+  justify-content: center;
+}
+
+.loginForm {
+  width: 500px;
+  margin-top: 100px;
+  padding: 0 10px 0 10px;
+  border-radius: 10px;
+  box-shadow: 10px 10px 5px #afafaf;
+  button {
+    width: 100%;
+  }
+}
+
+.signUpForm {
+  width: 500px;
+  margin-top: 80px;
+  padding: 0 10px 0 10px;
+  border-radius: 10px;
+  box-shadow: 10px 10px 5px #afafaf;
+  button{
+    width: 100%;
+  }
+}

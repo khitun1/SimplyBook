@@ -1,0 +1,21 @@
+.btns{
+ button {
+   margin-right: 10px;
+ }
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  height: 60px;
+  .info{
+    width: fit-content;
+    display: flex;
+    p {
+      margin: 10px;
+      color: white;
+    }
+  }
+}
+

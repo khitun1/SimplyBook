@@ -1,0 +1,77 @@
+.main {
+  margin: 50px 50px 0 50px;
+}
+
+.add {
+  margin-bottom: 30px;
+}
+
+.school {
+  width: 60%;
+  .btns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 80%;
+    button {
+      margin: 10px;
+    }
+  }
+}
+
+.AddInfo {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  margin-top: 20px;
+  input {
+    width: 40%;
+  }
+  textarea {
+    border-radius: 10px;
+    border-width: 0;
+    padding: 5px;
+    box-shadow: inset 5px 5px 5px #afafaf;
+    width: 70%;
+  }
+}
+
+.AddInfo > * {
+  margin-bottom: 15px;
+}
+
+.adminPaymentsChoice {
+  display: flex;
+  justify-content: space-between;
+  width: 70%;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.addChild {
+
+  width: 40%;
+  margin-left: 30%;
+  margin-bottom: 0;
+}
+
+.addChild > * {
+  margin-bottom: 15px;
+}
+
+.addChildBtn {
+  width: 80%;
+}
+
+.modalNewTeacher {
+  display: flex;
+  flex-direction: column;
+  * {
+    margin-bottom: 10px;
+  }
+}
+
+.changeReq {
+  width: 25%;
+  display: flex;
+  justify-content: space-between;
+}

@@ -1,0 +1,67 @@
+.main {
+  margin: 30px;
+}
+
+.section {
+  width: 40%;
+}
+
+.choice {
+  display: flex;
+  margin: 20px;
+  width: 50%;
+  justify-content: space-between;
+  .dates {
+    width: 45%;
+    input {
+      width: 47%;
+    }
+  }
+}
+
+.changeRange {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  margin-left: 19%;
+  button {
+    background: none;
+    border: 0;
+    cursor: pointer;
+    margin-top: 5px;
+    font-size: 24px;
+  }
+}
+
+$size: 25px;
+
+.visit {
+  padding: 0;
+  font-size: $size;
+  width: $size;
+  margin-left: 40%;
+}
+
+.yes {
+  color: #00e700;
+}
+
+.no {
+  color: red;
+}
+
+table {
+  border: 1px solid #d0d0d0;
+}
+
+.choiceVisit {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  * {
+    margin-bottom: 10px;
+  }
+}
+
+

@@ -1,0 +1,62 @@
+.groupChoice {
+  display: flex;
+  flex-wrap: wrap;
+  width: 80%;
+  justify-content: space-between;
+  select {
+    width: 300px;
+  }
+  button {
+    width: 300px;
+  }
+  input {
+    width: 250px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+}
+
+$size: 25px;
+
+table {
+  text-align: center;
+}
+
+.modalNewGroup {
+  display: flex;
+  justify-content: space-between;
+  input {
+    width: 50%;
+  }
+}
+
+.modalChangeGroup {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  select {
+    width: 50%;
+  }
+  * {
+    margin-bottom: 10px;
+  }
+}
+
+.band {
+  background: #afafaf;
+  width: fit-content;
+  height: fit-content;
+  * {
+    margin: 0;
+    border-radius: 0;
+    border-width: 0;
+  }
+}
+
+.choiceTime {
+  display: flex;
+  justify-content: space-between;
+  input {
+    width: 30%;
+  }
+}
