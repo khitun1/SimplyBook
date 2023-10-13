@@ -74,4 +74,24 @@
   width: 25%;
   display: flex;
   justify-content: space-between;
+  margin-bottom: 15px;
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
+}
+
+.choicePlanGroup {
+  display: flex;
+  margin-top: 10px;
+  select {
+    width: 15%;
+  }
+  * {
+    margin-right: 10px;
+  }
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
 }

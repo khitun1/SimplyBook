@@ -7,11 +7,12 @@ interface IProp {
     name?: string,
 
     type?: string,
+    id?: string
 }
 
-const MyInput = ({placeholder, readonly, name, type} : IProp) => {
+const MyInput = ({placeholder, readonly, name, type, id} : IProp) => {
     return (
-        <input placeholder={placeholder} readOnly={readonly} name={name} type={type}/>
+        <input placeholder={placeholder} readOnly={readonly} name={name} type={type} id={id}/>
     );
 };
 
