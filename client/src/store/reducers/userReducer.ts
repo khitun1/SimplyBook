@@ -1,15 +1,16 @@
-import {IUserAction, IUserState} from "../../types/user";
+import {IUserAction, IUserState, userActionTypes} from "../../types/userType";
 
 
 const defaultState : IUserState = {
     name: "",
-    role: 1,
+    role: null,
     login: "",
+    id: null,
 }
 
 export const userReducer = (state = defaultState, action: IUserAction) : IUserState => {
     switch(action.type) {
-        case "SET_USER":
+        case userActionTypes.SET_USER:
             return action.payload;
         default:
             return state;

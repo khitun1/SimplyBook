@@ -2,13 +2,25 @@ import React from 'react';
 import {Button, Modal} from "react-bootstrap";
 import BtnIcon from "../UI/BtnIcon";
 import late from "../../icons/lateIcon.png";
+import {getChildrenApi, setVisitApi} from "../../http/childrenApi";
+import {useActions} from "../../hooks/useActions";
 
 interface IProp {
     show: boolean,
     closeModal: () => void,
+    id: string,
+    date: string
 }
 
-const SetVisitModal = ({show, closeModal} : IProp) => {
+const SetVisitModal = ({show, closeModal, id, date} : IProp) => {
+    const {setChildren} = useActions();
+    const setVisit = async(mark: string) => {
+        await setVisitApi(mark, id, date);
+        const children = await getChildrenApi();
+        setChildren(children);
+        closeModal();
+    }
+
     return (
         <Modal
             show={show}
@@ -21,9 +33,9 @@ const SetVisitModal = ({show, closeModal} : IProp) => {
             </Modal.Header>
             <Modal.Body>
                 <div className='choiceVisit'>
-                    <Button variant='success'>&#10004;</Button>
-                    <Button variant='danger'>&#10006;</Button>
-                    <BtnIcon img={late}/>
+                    <Button variant='success' onClick={() => setVisit('присутствовал')}>&#10004;</Button>
+                    <Button variant='danger' onClick={() => setVisit('отсутствовал')}>&#10006;</Button>
+                    <BtnIcon img={late} onClick={() => setVisit('опоздал')}/>
                 </div>
             </Modal.Body>
         </Modal>

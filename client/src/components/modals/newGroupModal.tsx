@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Button, Modal} from "react-bootstrap";
 import MyInput from "../UI/MyInput";
+import {createGroupApi} from "../../http/groupApi";
 
 interface IProp {
     show: boolean,
@@ -9,8 +10,13 @@ interface IProp {
 }
 
 const NewGroupModal = ({show, closeModal, openSchedule} : IProp) => {
+    const [name, setName] = useState('');
 
-    const createGroup = () => {
+    const createGroup = async() => {
+        const orgId = localStorage.getItem('currentOrg');
+        // @ts-ignore
+        const id = await createGroupApi(name, orgId);
+        localStorage.setItem('currentGroup', id);
         closeModal();
         openSchedule();
     }
@@ -25,7 +31,7 @@ const NewGroupModal = ({show, closeModal, openSchedule} : IProp) => {
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body className='modalNewGroup'>
-                <MyInput placeholder='Название'/>
+                <MyInput placeholder='Название' value={name} onChange={setName}/>
                 <Button onClick={createGroup}>Создать</Button>
             </Modal.Body>
         </Modal>

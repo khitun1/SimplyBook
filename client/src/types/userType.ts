@@ -1,6 +1,7 @@
 export interface IUserState {
     name: string,
-    role: null | number,
+    _id: string | null,
+    role: null | string,
     login: string,
     balance? : number,
 }
@@ -13,6 +14,8 @@ interface setUser {
     type: userActionTypes.SET_USER,
     payload: IUserState,
 }
+
+
 
 export type IUserAction = setUser;
 

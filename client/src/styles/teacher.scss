@@ -19,6 +19,12 @@
   }
 }
 
+.choiceGroup {
+  * {
+    width: 30%;
+  }
+}
+
 .changeRange {
   display: flex;
   justify-content: space-between;

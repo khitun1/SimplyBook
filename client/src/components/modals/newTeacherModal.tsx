@@ -1,6 +1,9 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Modal} from "react-bootstrap";
 import CreateNewUser from "../forms/createNewUser";
+import {getGroupsApi} from "../../http/groupApi";
+import {useTypedSelector} from "../../hooks/useTypedSelector";
+import {useActions} from "../../hooks/useActions";
 
 interface IProp {
     show: boolean,
@@ -9,6 +12,8 @@ interface IProp {
 
 
 const NewTeacherModal = ({show, closeModal}: IProp) => {
+
+
     return (
         <Modal
             show={show}
@@ -20,7 +25,7 @@ const NewTeacherModal = ({show, closeModal}: IProp) => {
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body className='modalNewTeacher'>
-                <CreateNewUser/>
+                <CreateNewUser role={'Teacher'} onClick={closeModal}/>
             </Modal.Body>
         </Modal>
     );

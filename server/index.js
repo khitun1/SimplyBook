@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 require('dotenv').config();
 const router = require('./routes/index');
+const client = require('./db');
 
 const app = express();
 
@@ -11,8 +12,11 @@ app.use(cors())
 
 const port = process.env.PORT;
 
-const start = () => {
+
+
+const start = async () => {
     try {
+        await client.connect();
         app.listen(port, () => {
             console.log("Server is running on port " + port)
         }) 
@@ -22,3 +26,8 @@ const start = () => {
 }
 
 start();
+
+
+
+
+

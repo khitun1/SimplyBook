@@ -24,7 +24,7 @@ const NewUserModal = ({show, closeModal} : IProp) => {
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body className='modalNewTeacher'>
-                <CreateNewUser onClick={createUser}/>
+                <CreateNewUser onClick={createUser} role={'Client'}/>
             </Modal.Body>
         </Modal>
     );

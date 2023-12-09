@@ -1,7 +1,15 @@
 import React from 'react';
 import {Table} from "react-bootstrap";
+import moment from "moment";
 
-const ClientPaymentTable = () => {
+interface IProp {
+    payments: any[],
+    start: string,
+    end: string,
+}
+
+const ClientPaymentTable = ({payments, start, end} : IProp) => {
+
     return (
         <Table striped bordered hover>
             <thead>
@@ -12,11 +20,28 @@ const ClientPaymentTable = () => {
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>09.09.2023</td>
-                <td>10000р.</td>
-                <td>Проведен</td>
-            </tr>
+            {
+                payments.filter(p => {
+                    const date = moment(p.date, 'DD.MM.YYYY');
+                    const firstDate = moment(start, 'YYYY-MM-DD');
+                    const secondDate = moment(end, 'YYYY-MM-DD');
+                    if (!start && !end) {
+                        return true
+                    }
+                    else if (!start && end) {
+                        return secondDate.diff(date) >= 0;
+                    }
+                    else if (start && !end) {
+                        return date.diff(firstDate) >= 0;
+                    }
+                    return date.diff(firstDate) >= 0 && secondDate.diff(date) >= 0;
+                }).map(p =>
+                    <tr>
+                        <td>{p.date}</td>
+                        <td>{p.sum}</td>
+                        <td>{p.status}</td>
+                    </tr>)
+            }
             </tbody>
         </Table>
     );

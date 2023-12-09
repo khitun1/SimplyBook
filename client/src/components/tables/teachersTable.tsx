@@ -1,44 +1,76 @@
-import React from 'react';
+import {useState} from 'react';
 import {Button, Table} from "react-bootstrap";
 import '../../styles/teacher.scss';
+import {useTypedSelector} from "../../hooks/useTypedSelector";
+import TeacherTransferModal from "../modals/teacherTransferModal";
+import {delTeacherApi, getTeachersApi} from "../../http/userApi";
+import {useActions} from "../../hooks/useActions";
 
-interface IProp {
-    onClick?: () => void,
-    groups: string[],
-}
 
-const TeachersTable = ({onClick, groups} : IProp) => {
-    let list = '';
-    groups.forEach((p, index) => {
-        if (index !== groups.length - 1) {
-            list += p + ', ';
-        }
-        else {
-            list += p;
-        }
-    })
+const TeachersTable = () => {
+    const teachers = useTypedSelector(state => state.teachers);
+    const [transferShow, setTransferShow] = useState(false);
+    const [teacher, setTeacher] = useState({});
+    const {setTeachers} = useActions();
+
+
+    const changeGroups = (selectTeacher: object) => {
+        setTeacher(selectTeacher);
+        setTransferShow(true);
+    }
+
+    const del = async(id: string) => {
+        const orgId = localStorage.getItem('currentOrg');
+       await delTeacherApi(id, orgId);
+        // @ts-ignore
+        const teachers = await getTeachersApi(orgId);
+        setTeachers(teachers);
+    }
+
 
     return (
-        <Table striped bordered hover>
-            <thead>
-            <tr>
-                <th>Имя</th>
-                <th>Группы</th>
-                <th>Доабавить или убрать группу</th>
-                <th>Ислючить</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>Иванов Иван</td>
-                <td>
-                        {list}
-                </td>
-                <td><Button variant='secondary' onClick={onClick}>Изменить</Button></td>
-                <td><Button variant='outline-danger'>&#10006;</Button></td>
-            </tr>
-            </tbody>
-        </Table>
+        <div>
+            <Table striped bordered hover>
+                <thead>
+                <tr>
+                    <th>Имя</th>
+                    <th>Группы</th>
+                    <th>Доабавить или убрать группу</th>
+                    <th>Ислючить</th>
+                </tr>
+                </thead>
+                <tbody>
+                {
+                    teachers.map(p =>
+                        <tr>
+                            <td>{p.name}</td>
+                            <td>
+                                <ul>
+                                    {p.groups.map(p => <li>{p.name}</li>)}
+                                </ul>
+
+                            </td>
+                            <td>
+                                <Button variant='secondary' onClick={() => changeGroups(p)}>
+                                Изменить
+                            </Button>
+                            </td>
+                            <td>
+                                <Button variant='outline-danger' onClick={() => del(p._id)}>
+                                    &#10006;
+                                </Button>
+                            </td>
+                        </tr>
+                    )
+                }
+                </tbody>
+            </Table>
+
+            <TeacherTransferModal show={transferShow}
+                                  closeModal={() => setTransferShow(false)}
+                                  teacher={teacher}/>
+        </div>
+
     );
 };
 

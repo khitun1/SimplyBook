@@ -19,6 +19,7 @@ import AddChildPage from "./pages/admin/addChildPage";
 import AdminChildPaymentsInfo from "./pages/admin/adminChildPaymentsInfo";
 import ChangeRequisites from "./pages/admin/changeRequisites";
 import AllTeachers from "./pages/admin/allTeachers";
+import ClientInvoices from "./pages/clients/clientInvoices";
 
 
 
@@ -43,6 +44,7 @@ function App() {
           <Route path='/childPayments' element={<AdminChildPaymentsInfo/>}/>
           <Route path='/changeRequisites' element={<ChangeRequisites/>}/>
           <Route path='/teachers' element={<AllTeachers/>}/>
+          <Route path='/clientInvoices' element={<ClientInvoices/>}/>
       </Routes>
     </div>
   );

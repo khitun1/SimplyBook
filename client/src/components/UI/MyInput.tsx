@@ -7,12 +7,15 @@ interface IProp {
     name?: string,
 
     type?: string,
-    id?: string
+    id?: string,
+    value?: string,
+    onChange?: (e: any) => void,
 }
 
-const MyInput = ({placeholder, readonly, name, type, id} : IProp) => {
+const MyInput = ({placeholder, readonly, name, type, id, value, onChange} : IProp) => {
     return (
-        <input placeholder={placeholder} readOnly={readonly} name={name} type={type} id={id}/>
+        <input placeholder={placeholder} readOnly={readonly}
+               name={name} type={type} id={id} value={value} onChange={e => onChange ? onChange(e.target.value) : true}/>
     );
 };
 

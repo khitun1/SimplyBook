@@ -1,35 +1,57 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Button} from "react-bootstrap";
 
 interface IProp {
-    count: number;
+    // count: number;
     getActive: (active: string) => void,
+
+    schedule: string[],
 }
 
-const BtnBand = ({count, getActive} : IProp) => {
+const BtnBand = ({getActive, schedule} : IProp) => {
     const days = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
+
+
     const setActive = (day: string) => {
-        const item = document.getElementById(day);
-        const name = day[1] + day[2];
-        if (item) {
-            if (item.className.split(' ').indexOf(day) !== -1) {
+        getActive(day);
+        days?.map(p => {
+            const item = document.getElementById(p);
+            if (item.className.split(' ').indexOf('active') !== -1) {
                 const index = item.className.split(' ').indexOf('active');
                 const arr = item.className.split(' ');
                 arr.splice(index, 1);
                 item.className = arr.join(' ');
             }
-            else {
-                item.className += ' active';
-            }
-            getActive(name);
-        }
+        })
     }
+
+    useEffect(() => {
+        schedule?.map(p => {
+            const item = document.getElementById(p);
+            if (item) {
+                if (item.className.split(' ').indexOf('active') !== -1) {
+                    const index = item.className.split(' ').indexOf('active');
+                    const arr = item.className.split(' ');
+                    arr.splice(index, 1);
+                    item.className = arr.join(' ');
+                }
+                else {
+                    item.className += ' active';
+                }
+            }
+        })
+    })
+
+
 
     return (
         <div id='band'>
             {
-                days.map((day: string) =>
-                    <Button variant='outline-secondary' id={count + day} onClick={() => setActive(count + day)}>{day}</Button>
+                days?.map((day: string) =>
+                    <Button variant='outline-secondary' id={day}
+                            onClick={() => setActive(day)}>
+                        {day}
+                    </Button>
                 )
             }
         </div>

@@ -1,12 +1,12 @@
 const express = require("express");
 const router = express();
+const OrgController = require('../controllers/OrganizationController');
+const AuthMiddleware = require('../middleware/authMiddleware');
 
-router.post('/create', );
-router.delete('/delete', );
-router.put('/changeRequesites', );
-router.put('/changeName', );
-router.put('/changeDescription', );
-router.put('/changeOwner', );
-router.get('/getInfo', );
+router.post('/create', AuthMiddleware, OrgController.create);
+router.post('/changeRequesites', AuthMiddleware, OrgController.changeRequisites);
+router.get('/getOne', AuthMiddleware, OrgController.getOrganization);
+router.get('/getAll', AuthMiddleware, OrgController.getOrganizations);
+router.post('/getForChild', AuthMiddleware, OrgController.getOrganizationsForChild);
 
 module.exports = router;

@@ -1,9 +1,15 @@
 import React from 'react';
 import '..//../styles/inputDate.scss';
 
-const InputDate = () => {
+interface IProp {
+    value: string,
+    onChange: (e) => void
+}
+
+const InputDate = ({value, onChange}: IProp) => {
     return (
-        <input type='date'/>
+        <input type='date' value={value}
+                onChange={e => onChange(e.target.value)}/>
     );
 };
 

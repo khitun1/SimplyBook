@@ -1,20 +1,36 @@
 import React from 'react';
 import {Table} from "react-bootstrap";
+import moment from "moment";
+import {useTypedSelector} from "../../hooks/useTypedSelector";
 
-const TeacherPaymentsTable = () => {
+interface IProp {
+    search: string,
+}
+
+const TeacherPaymentsTable = ({search}: IProp) => {
+
+    const children = useTypedSelector(state => state.children);
+
     return (
         <Table striped bordered hover>
             <thead>
             <tr>
                 <th>Имя</th>
-                <th>Остаток на 01.04.2023</th>
+                <th>Баланс на {
+                    moment()
+                        // .startOf('month')
+                        .format('DD.MM.YYYY')
+                }</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>Иванов Иван</td>
-                <td>10000р.</td>
-            </tr>
+            {
+                children.filter(p => p.name.indexOf(search) !== -1).map(p =>
+                    <tr>
+                        <td>{p.name}</td>
+                        <td>{p.balance}</td>
+                    </tr>)
+            }
             </tbody>
         </Table>
     );

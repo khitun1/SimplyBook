@@ -1,5 +1,8 @@
 import React from 'react';
 import {Button, Form, Modal} from "react-bootstrap";
+import {useTypedSelector} from "../../hooks/useTypedSelector";
+import GroupList from "../GroupList";
+import {changeGroupForChildApi} from "../../http/childrenApi";
 
 interface IProp {
     show: boolean,
@@ -8,7 +11,9 @@ interface IProp {
 
 
 const ChildTransferModal = ({show, closeModal} : IProp) => {
-    const changeGroup = () => {
+
+    const changeGroup = async() => {
+        await changeGroupForChildApi();
         closeModal();
     }
 
@@ -23,10 +28,7 @@ const ChildTransferModal = ({show, closeModal} : IProp) => {
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body className='modalChangeGroup'>
-                <Form.Select aria-label="Default select example">
-                    <option disabled selected>Выберите новую группу</option>
-                    <option value="1">609-91</option>
-                </Form.Select>
+                <GroupList/>
                 <Button onClick={changeGroup}>Перевести</Button>
             </Modal.Body>
         </Modal>
